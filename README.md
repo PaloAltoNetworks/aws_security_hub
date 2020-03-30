@@ -1,12 +1,14 @@
-# pan_aws_security_hub
+# aws_security_hub
 This implementation integrates the AWS Security Hub insights and makes it actionable on the VM-Series FW.
 
 # Theory of Operation
 
-The ```pan_aws_security_hub``` python script upon invocation does the following:
+The ```aws_security_hub``` python script upon invocation does the following:
 
 - interacts with AWS Security Hub and sources indicators of compromise. 
-- processes the indicators of compromise and extracts details such as IP and some metadata. 
+- IOC's when available, trigger the invocation of a lambda function
+- the lambda funciton processes the IOC and extracts details such as IP and add the
+  IP to the appropriate DAG Tag.
 - interacts with the firewall to:
     -  create a dynamic address group
     -  create security rule and associates the dynamic address group with the security rule 
